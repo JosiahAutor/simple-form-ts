@@ -1,6 +1,6 @@
 let personData = [];
 
-let jsDOM:any = {
+let jsDOM = {
     data: {
         fname: <HTMLInputElement>document.getElementById('firstName'),
         lname: <HTMLInputElement>document.getElementById('lastName'),
@@ -67,7 +67,13 @@ let jsFunc = {
         let phoneIV = (<HTMLInputElement>document.getElementById('phoneNumber')).value;
         let cityIV = (<HTMLInputElement>document.getElementById('city')).value;
         if (firstNameIV === "" || lastNameIV === "" || emailIV === "" || phoneIV === ""|| cityIV === "") {
-           alert('Please fill in the missing fields')
+            let arr:any = [];
+            Object.values(jsDOM.data).forEach(x => {
+                if (x.value == "") {
+                    arr.push(`Fill up ${x.title}`);
+                }
+            });
+            alert(arr.join(', \n'));
         } else {
         personData.push({ firstname: jsDOM.data.fname.value, lastname: jsDOM.data.lname.value, email: jsDOM.data.email.value,phone: jsDOM.data.phone.value,city: jsDOM.data.city.value});
         jsFunc.clearFields();

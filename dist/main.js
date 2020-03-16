@@ -59,7 +59,13 @@ let jsFunc = {
         let phoneIV = document.getElementById('phoneNumber').value;
         let cityIV = document.getElementById('city').value;
         if (firstNameIV === "" || lastNameIV === "" || emailIV === "" || phoneIV === "" || cityIV === "") {
-            alert('Please fill in the missing fields');
+            let arrayDatas = [];
+            Object.values(jsDOM.data).forEach(x => {
+                if (x.value == "") {
+                    arrayDatas.push(`Fill up ${x.title}`);
+                }
+            });
+            alert(arrayDatas.join(', \n'));
         }
         else {
             personData.push({ firstname: jsDOM.data.fname.value, lastname: jsDOM.data.lname.value, email: jsDOM.data.email.value, phone: jsDOM.data.phone.value, city: jsDOM.data.city.value });
